@@ -1,26 +1,36 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {useDispatch, useSelector} from "react-redux";
+import {AppDispatch, RootState} from "./store/store";
+import {decrementCreator, incrementCreator} from "./store/countReducer";
+import {deleteUser} from "./store/useerReducer";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    const dispatch = useDispatch();
+    const count = useSelector((state:RootState) => state.count.count);
+    const users = useSelector((state:RootState) => state.users.users);
+
+    return (
+        <div className="app">
+            <div className="count">{count}</div>
+            <div className="btns">
+                <button className="btn" onClick={() => dispatch(incrementCreator())}>Add (+1)</button>
+                <button className="btn" onClick={() => dispatch(decrementCreator())}>Delete (-1)</button>
+                <button className="btn" >Get users</button>
+            </div>
+            {users.length ?
+                <div className="users">
+                    {users.map(user =>
+                        <div className="user" onClick={() => dispatch(deleteUser(user.id))}>
+                            {user.first_name}
+                        </div>
+                    )}
+                </div> :
+                <div className="users">No users</div>
+            }
+        </div>
+    );
 }
 
 export default App;
