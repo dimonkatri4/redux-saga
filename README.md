@@ -1,4 +1,4 @@
-#Redux-Saga
+# Redux-Saga
 
 The project shows how to work with asynchronous actions using the redux-saga
 
