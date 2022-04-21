@@ -2,6 +2,7 @@ import { User } from "../types/UserType";
 
 const GET_USERS = 'GET_USERS';
 const DELETE_USER = 'DELETE_USER';
+export const FETCH_USERS = 'FETCH_USERS';
 
 const initialState = {
     users: [] as User[] | []
@@ -30,3 +31,4 @@ interface DeleteUserType {
 }
 export const getUsersCreation = (users: User[]) => ({type: GET_USERS, users});
 export const deleteUser = (id: number) => ({type: DELETE_USER, id});
+export const fetchUsers = () => ({type: FETCH_USERS});

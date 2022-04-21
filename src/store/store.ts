@@ -2,18 +2,17 @@ import {combineReducers, legacy_createStore as createStore, applyMiddleware} fro
 import createSagaMiddleware from "redux-saga";
 import {countReducer} from "./countReducer";
 import {userReducer} from "./useerReducer";
-import {countWatcher} from "../saga/countSaga";
+import {rootWatcher} from "../saga/rootWatcher";
 
 const sagaMiddleware = createSagaMiddleware();
 
 const rootReducers = combineReducers({
     count: countReducer,
     users: userReducer
-})
+});
 
 export const store = createStore(rootReducers, applyMiddleware(sagaMiddleware));
 
-sagaMiddleware.run(countWatcher)
+sagaMiddleware.run(rootWatcher);
 
 export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;

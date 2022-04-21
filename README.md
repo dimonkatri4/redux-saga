@@ -1,4 +1,8 @@
-# Getting Started with Create React App
+#Redux-Saga
+
+The project shows how to work with asynchronous actions using the redux-saga
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
